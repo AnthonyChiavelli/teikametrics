@@ -1,0 +1,37 @@
+Problem:
+  There is a table of public worker records including job title and salary. We would like to know the average salary
+  of any title we wish to search.
+
+Solution:
+  Write a simple node server using node and expressjs, backed by a mongodb. Import the table from a local file into the
+  database. Expose an endpoint that a) accepts a search query and returns a json object with the average salary returned
+  by the given search query or b) if no such query param is provided, return an HTML page with which a user can make
+  ajax requests to the endpoint in the browser.
+
+Reasoning behind choices:
+  - node
+    - I chose node because it's a light framework I have used in the past to write simple servers. It also interfaces
+      nicely with mongodb, which I know will get me the text searching I need.
+  - expressjs
+    - I used this because it allows me to write simple api endpoints without any bells and whistles
+  - model
+    - I chose not to use an ORM like mongoose and just work directly with bare collections, because they would be over
+      kill for a simple application like this. I had no need for validation or instance methods.
+  - materializecss
+    - I used this to provide a basic material UI for searching average salaries
+  - I decided to overload the URL to act as both a JSON-returning endpoint, when the query param is provided, or
+    to return HTML otherwise, so the user has a page on which to play around with the endpoint. In a production
+    situation, the choice of URL would have to be more thought-out.
+  - I used an ajax request on the page to create a slightly smoother experience for the user.
+  - If more time were given, I would have considered displaying all the results that search term matched on so the user
+    can assess the validity of the average returned.
+  - It is also possible to retrieve the data from the original endpoint when requested, rather than dump it all in a
+    local database on startup. I decided not to do this because it would have been much slower, and the fuzzy text
+    search would have been more difficult. The upside is that the data would always be up to date. A reasonable
+    compromise is to periodically update our local cache of the data.
+
+External links
+    - github
+        github.com/anthonyreid99
+    - resume
+        http://anthonyreid.meteor.com/resume
